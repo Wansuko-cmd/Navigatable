@@ -1,0 +1,87 @@
+[versions]
+#########################################
+# 共通
+#########################################
+# Kotlin
+kotlin = "2.0.0"
+
+#########################################
+# Library
+#########################################
+# KSP
+ksp-symbol-processing = "2.0.0-1.0.21"
+
+#########################################
+# Sample
+#########################################
+
+# SDK
+android-compileSdk = "34"
+android-minSdk = "24"
+android-targetSdk = "34"
+
+# AndroidX
+androidx = "1.13.1"
+androidx-activity-compose = "1.9.0"
+androidx-lifecycle-runtime = "2.7.0"
+
+# Androidx Compose
+androidx-compose-bom = "2024.05.00"
+androidx-compose-compiler = "1.5.13"
+androidx-compose-lifecycle = "2.7.0"
+androidx-compose-navigation = "2.7.7"
+
+# Gradle
+gradle-android = "8.4.1"
+
+[libraries]
+
+#########################################
+# Library
+#########################################
+# KSP
+ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp-symbol-processing" }
+
+#########################################
+# Sample
+#########################################
+
+# AndroidX
+androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime" }
+
+# Compose
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-compose-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
+androidx-compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-compose-lifecycle" }
+androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "androidx-compose-compiler" }
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-compose-navigation" }
+
+# Gradle
+gradle-android = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle-android" }
+
+[bundles]
+#########################################
+# Android
+#########################################
+androidx = ["androidx-core", "androidx-activity-compose", "androidx-lifecycle-runtime"]
+androidx-compose = [
+    "androidx-compose-ui",
+    "androidx-compose-icons-core",
+    "androidx-compose-material3",
+    "androidx-compose-tooling",
+    "androidx-compose-preview",
+    "androidx-compose-lifecycle",
+    "androidx-compose-compiler",
+    "androidx-compose-navigation",
+]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradle-android" }
+android-library= { id = "com.android.library", version.ref = "gradle-android" }
+jetbrains-kotlin-multiplatform= { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
