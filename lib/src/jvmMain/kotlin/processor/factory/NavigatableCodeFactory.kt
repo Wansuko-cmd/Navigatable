@@ -38,6 +38,7 @@ private fun StringBuilder.generateImport() {
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
@@ -99,8 +100,11 @@ private fun StringBuilder.generateNavigateToNavigatableFunction(
             "\${${it.name}NavType.encodeToString(${it.name})}"
         }
     """
-        internal fun NavController.navigateTo$navigatableName($parameters) =
-            navigate("$navigatableName${if (dynamics.isNotEmpty()) "/" else ""}$path")
+        internal fun NavController.navigateTo$navigatableName(
+            $parameters${if (parameters.isNotEmpty()) "," else ""}
+            navOptions: NavOptions? = null,
+            ) =
+            navigate("$navigatableName${if (dynamics.isNotEmpty()) "/" else ""}$path", navOptions)
     """
         .trimIndent()
         .also { appendLine(it) }
