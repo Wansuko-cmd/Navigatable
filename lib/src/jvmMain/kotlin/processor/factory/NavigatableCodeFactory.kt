@@ -12,17 +12,20 @@ internal fun generateNavigatableCodeFactory(navigatable: KSFunctionDeclaration):
             generateRouteDefinition(
                 routeName = result.routeName,
                 navigatableName = result.navigatableName,
+                shouldBeInternal = result.shouldBeInternal,
                 dynamics = result.dynamics,
             )
             appendLine()
             generateNavigateToNavigatableFunction(
                 navigatableName = result.navigatableName,
+                shouldBeInternal = result.shouldBeInternal,
                 dynamics = result.dynamics,
             )
             appendLine()
             generateNavGraphRegisterFunction(
                 navigatableName = result.navigatableName,
                 routeName = result.routeName,
+                shouldBeInternal = result.shouldBeInternal,
                 dynamics = result.dynamics,
                 parameters = result.parameters,
             )
@@ -52,11 +55,13 @@ import kotlinx.serialization.json.Json
 private fun StringBuilder.generateRouteDefinition(
     routeName: String,
     navigatableName: String,
+    shouldBeInternal: Boolean,
     dynamics: List<NavigatableParameter>,
 ) {
+    val prefix = if (shouldBeInternal) "internal" else ""
     val path = dynamics.joinToString(separator = "/") { "{${it.name}}" }
     """
-        const val $routeName = "$navigatableName${if (dynamics.isNotEmpty()) "/" else ""}$path"
+        $prefix const val $routeName = "$navigatableName${if (dynamics.isNotEmpty()) "/" else ""}$path"
     """
         .trimIndent()
         .also { appendLine(it) }
@@ -92,15 +97,17 @@ private object ${name}NavType : NavType<$type>(isNullableAllowed = $isNullable) 
 }
 private fun StringBuilder.generateNavigateToNavigatableFunction(
     navigatableName: String,
+    shouldBeInternal: Boolean,
     dynamics: List<NavigatableParameter>,
 ) {
+    val prefix = if (shouldBeInternal) "internal" else ""
     val parameters = dynamics.joinToString(",\n") { "${it.name}: ${it.type}" }
     val path = dynamics
         .joinToString("/") {
             "\${${it.name}NavType.encodeToString(${it.name})}"
         }
     """
-        fun NavController.navigateTo$navigatableName(
+        $prefix fun NavController.navigateTo$navigatableName(
             $parameters${if (parameters.isNotEmpty()) "," else ""}
             navOptions: NavOptions? = null,
             ) =
@@ -113,9 +120,11 @@ private fun StringBuilder.generateNavigateToNavigatableFunction(
 private fun StringBuilder.generateNavGraphRegisterFunction(
     navigatableName: String,
     routeName: String,
+    shouldBeInternal: Boolean,
     dynamics: List<NavigatableParameter>,
     parameters: List<NavigatableParameter>,
 ) {
+    val prefix = if (shouldBeInternal) "internal" else ""
     val args = parameters
         .joinToString(",\n") { "${it.name}: ${it.type}" }
 
@@ -135,7 +144,7 @@ private fun StringBuilder.generateNavGraphRegisterFunction(
         "${it.name} = ${it.name}"
     }
     """
-fun NavGraphBuilder.${navigatableName.replaceFirstChar { it.lowercase() }}($args) {
+$prefix fun NavGraphBuilder.${navigatableName.replaceFirstChar { it.lowercase() }}($args) {
     composable(
         route = $routeName,
         arguments = $navTypeArguments,

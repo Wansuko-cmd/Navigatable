@@ -8,7 +8,7 @@ Navigation Composeにてあると便利な関数群を作成するKSPライブ�
 
 ```kotlin
 
-@Navigatable
+@Navigatable(shouldBeInternal = true)
 @Composable
 fun FooScreen(
     // 画面遷移の時に渡したい値は@Dynamicを付ける
@@ -22,15 +22,15 @@ fun FooScreen(
 すると以下のようなファイルが生成される
 
 ```kotlin
-const val FOO_SCREEN = "FooScreen/{id}"
+internal const val FOO_SCREEN = "FooScreen/{id}"
 
-fun NavController.navigateToFooScreen(
+internal fun NavController.navigateToFooScreen(
     id: kotlin.String,
     navOptions: NavOptions? = null,
     ) =
     navigate("FooScreen/${idNavType.encodeToString(id)}", navOptions)
 
-fun NavGraphBuilder.fooScreen(onClick: () -> kotlin.Unit) {
+internal fun NavGraphBuilder.fooScreen(onClick: () -> kotlin.Unit) {
     composable(
         route = FOO_SCREEN,
         arguments = listOf(navArgument("id") { type = idNavType }),

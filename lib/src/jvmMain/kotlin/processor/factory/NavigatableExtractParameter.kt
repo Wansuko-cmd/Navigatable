@@ -1,6 +1,7 @@
 package processor.factory
 
 import annotation.isDynamic
+import annotation.isNavigatable
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSTypeReference
 import com.google.devtools.ksp.symbol.KSValueParameter
@@ -20,9 +21,16 @@ fun extractFromNavigatable(navigatable: KSFunctionDeclaration): ExtractFromNavig
             .uppercase()
             .drop(1)
 
+    val shouldBeInternal = navigatable.annotations
+        .first { it.isNavigatable() }
+        .arguments
+        .first { it.name!!.asString() == "shouldBeInternal" }
+        .let { it.value as Boolean }
+
     return ExtractFromNavigatableResult(
         navigatableName = navigatableName,
         routeName = routeName,
+        shouldBeInternal = shouldBeInternal,
         dynamics = dynamics.map { NavigatableParameter(it) },
         parameters = parameters.map { NavigatableParameter(it) },
     )
@@ -31,6 +39,7 @@ fun extractFromNavigatable(navigatable: KSFunctionDeclaration): ExtractFromNavig
 data class ExtractFromNavigatableResult(
     val navigatableName: String,
     val routeName: String,
+    val shouldBeInternal: Boolean,
     val parameters: List<NavigatableParameter>,
     val dynamics: List<NavigatableParameter>,
 )
