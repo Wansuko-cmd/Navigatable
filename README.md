@@ -27,8 +27,7 @@ internal const val FOO_SCREEN = "FooScreen/{id}"
 internal fun NavController.navigateToFooScreen(
     id: kotlin.String,
     navOptions: NavOptions? = null,
-    ) =
-    navigate("FooScreen/${idNavType.encodeToString(id)}", navOptions)
+) = navigate("FooScreen/${idNavType.encodeToString(id)}", navOptions)
 
 internal fun NavGraphBuilder.fooScreen(onClick: () -> kotlin.Unit) {
     composable(
@@ -36,8 +35,7 @@ internal fun NavGraphBuilder.fooScreen(onClick: () -> kotlin.Unit) {
         arguments = listOf(navArgument("id") { type = idNavType }),
     ) { backStackEntry ->
         val id = idNavType.get(backStackEntry.arguments!!, "id")
-        FooScreen(id = id,
-onClick = onClick)
+        FooScreen(id = id, onClick = onClick)
     }
 }
 
@@ -64,11 +62,11 @@ private object idNavType : NavType<kotlin.String>(isNullableAllowed = false) {
 
 ○○は@Navigatableを付けた関数名
 
-|              名前              |        引数         |               説明               |
-|:----------------------------:|:-----------------:|:------------------------------:|
-|         ○○(スネークケース)          |         -         |   startDestinationを設定するときに利用   |
-| NavController.navigateTo○○() |  @Dynamicで指定した値   |         画面遷移を行うときに利用する         |
-|     NavGraphBuilder.○○()     | @Dynamicで指定していない値 | NavGraphBuilderで画面を登録するときに利用する |
+|              名前              |        引数         |               説明               | 参考                                                                                                                  |
+|:----------------------------:|:-----------------:|:------------------------------:|:--------------------------------------------------------------------------------------------------------------------|
+|         ○○(スネークケース)          |         -         |   startDestinationを設定するときに利用   | https://github.com/Wansuko-cmd/Navigatable/blob/main/app/src/main/java/com/example/navigatable/MainActivity.kt#L27  |
+| NavController.navigateTo○○() |  @Dynamicで指定した値   |         画面遷移を行うときに利用する         | https://github.com/Wansuko-cmd/Navigatable/blob/main/app/src/main/java/com/example/navigatable/MainActivity.kt#L30  |
+|     NavGraphBuilder.○○()     | @Dynamicで指定していない値 | NavGraphBuilderで画面を登録するときに利用する | https://github.com/Wansuko-cmd/Navigatable/blob/main/app/src/main/java/com/example/navigatable/MainActivity.kt#L29  |
 
 詳しくは`app`配下のサンプルコードを参照
 
