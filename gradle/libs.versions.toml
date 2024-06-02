@@ -3,13 +3,14 @@
 # 共通
 #########################################
 # Kotlin
-kotlin = "2.0.0"
+kotlin = "1.9.23"
+serialization = "1.6.0"
 
 #########################################
 # Library
 #########################################
 # KSP
-ksp-symbol-processing = "2.0.0-1.0.21"
+ksp-symbol-processing = "1.9.23-1.0.20"
 
 #########################################
 # Sample
@@ -35,6 +36,11 @@ androidx-compose-navigation = "2.7.7"
 gradle-android = "8.4.1"
 
 [libraries]
+#########################################
+# 共通
+#########################################
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-compose-navigation" }
+kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
 #########################################
 # Library
@@ -60,10 +66,6 @@ androidx-compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling" 
 androidx-compose-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-compose-lifecycle" }
 androidx-compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "androidx-compose-compiler" }
-androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-compose-navigation" }
-
-# Gradle
-gradle-android = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle-android" }
 
 [bundles]
 #########################################
@@ -82,6 +84,20 @@ androidx-compose = [
 ]
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "gradle-android" }
-android-library= { id = "com.android.library", version.ref = "gradle-android" }
+#########################################
+# 共通
+#########################################
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-symbol-processing" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+#########################################
+# Library
+#########################################
 jetbrains-kotlin-multiplatform= { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+
+#########################################
+# Android
+#########################################
+android-application = { id = "com.android.application", version.ref = "gradle-android" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+

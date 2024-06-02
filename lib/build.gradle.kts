@@ -1,14 +1,19 @@
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
-    applyDefaultHierarchyTemplate()
+    jvm()
+    sourceSets {
+        commonMain.dependencies {
+            api(libs.kotlin.serialization)
+        }
 
-    androidTarget()
+        jvmMain.dependencies {
+            implementation(libs.ksp.symbol.processing)
+        }
+    }
 }
 
-dependencies {
-    implementation(libs.ksp.symbol.processing)
-}
+task("testClasses")
