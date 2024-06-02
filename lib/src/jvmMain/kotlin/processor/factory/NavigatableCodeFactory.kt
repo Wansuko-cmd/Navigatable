@@ -68,7 +68,7 @@ private fun StringBuilder.generateNavType(dynamic: NavigatableParameter) {
     val isNullable = dynamic.isNullable
 
     """
-internal object ${name}NavType : NavType<$type>(isNullableAllowed = $isNullable) {
+private object ${name}NavType : NavType<$type>(isNullableAllowed = $isNullable) {
     override fun put(bundle: Bundle, key: String, value: $type) {
         val json = Json.encodeToString(value)
         bundle.putString(key, json)
@@ -100,7 +100,7 @@ private fun StringBuilder.generateNavigateToNavigatableFunction(
             "\${${it.name}NavType.encodeToString(${it.name})}"
         }
     """
-        internal fun NavController.navigateTo$navigatableName(
+        fun NavController.navigateTo$navigatableName(
             $parameters${if (parameters.isNotEmpty()) "," else ""}
             navOptions: NavOptions? = null,
             ) =
@@ -135,7 +135,7 @@ private fun StringBuilder.generateNavGraphRegisterFunction(
         "${it.name} = ${it.name}"
     }
     """
-internal fun NavGraphBuilder.${navigatableName.replaceFirstChar { it.lowercase() }}($args) {
+fun NavGraphBuilder.${navigatableName.replaceFirstChar { it.lowercase() }}($args) {
     composable(
         route = $routeName,
         arguments = $navTypeArguments,
