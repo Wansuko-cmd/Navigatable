@@ -73,3 +73,68 @@ private object idNavType : NavType<kotlin.String>(isNullableAllowed = false) {
 # 注意
 
 @Dynamicを付ける値はSerializable(kotlinx.serialization)である必要がある
+
+# FAQ
+
+## デフォルト引数は？
+
+未対応
+そのうち対応予定
+
+## Why not Voyager?
+
+クロージャ―関数が正常に動かない場合があるため
+
+例
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Navigator(screen = FirstScreen())
+        }
+    }
+}
+
+class FirstScreen : Screen {
+    @Composable
+    override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
+        Button(onClick = { navigator.push(SecondScreen { navigator.push(ThirdScreen()) }) }) {
+            Text(text = "Second")
+        }
+    }
+}
+
+class SecondScreen(private val onClick: () -> Unit) : Screen {
+    @Composable
+    override fun Content() {
+        Button(onClick = onClick) {
+            Text(text = "Second")
+        }
+    }
+}
+
+class ThirdScreen : Screen {
+    @Composable
+    override fun Content() {
+        val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.OpenDocumentTree()) {}
+        Button(onClick = { launcher.launch(null) }) {
+            Text(text = "Button")
+        }
+    }
+}
+```
+
+ビルドは通るが、ThirdScreenにあるファイルピッカーからファイルを選択すると落ちる（ver 1.0.0で確認）
+Navigation Composeはクロージャ―対応がされているが、書かないといけないコードが多くなるためこのライブラリを作成
+
+# どのNavigation Composeを参照すればいいのか
+
+以下の環境で動作することを確認
+
+`androidx.navigation:navigation-compose`(2.7.7)
+`org.jetbrains.androidx.navigation:navigation-compose`(2.7.0-alpha07)
+
+そのため、AndroidでもMultiplatformでも動作すると考えられる
