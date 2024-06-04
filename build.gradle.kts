@@ -8,4 +8,5 @@ plugins {
 
 subprojects {
     apply(plugin = Plugins.ktlint)
+    apply(plugin = "maven-publish")
 }

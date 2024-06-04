@@ -1,5 +1,4 @@
 plugins {
-    id("maven-publish")
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.serialization)
