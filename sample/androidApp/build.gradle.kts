@@ -49,8 +49,8 @@ android {
 }
 
 dependencies {
-    ksp(project(":processor"))
-    implementation(project(":annotation"))
+    ksp(libs.navigatable.processor)
+    implementation(libs.navigatable.annotation)
 
     implementation(libs.bundles.androidx)
 

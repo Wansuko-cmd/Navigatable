@@ -2,6 +2,10 @@
 #########################################
 # 共通
 #########################################
+# Library Info
+navigatable-group-id = "io.github.bugdog24"
+navigatable-version = "0.0.1-alpha01"
+
 # Kotlin
 kotlin = "1.9.23"
 serialization = "1.6.0"
@@ -45,6 +49,10 @@ kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serial
 #########################################
 # Library
 #########################################
+# Library Info
+navigatable-annotation = { group = "io.github.bugdog24", name = "navigatable-annotation", version.ref = "navigatable-version" }
+navigatable-processor = { group = "io.github.bugdog24", name = "navigatable-processor", version.ref = "navigatable-version" }
+
 # KSP
 ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
 

@@ -6,6 +6,7 @@ pluginManagement {
         google()
         mavenCentral()
         maven(url = "https://androidx.dev/storage/compose-compiler/repository/")
+        mavenLocal()
     }
 }
 dependencyResolutionManagement {
@@ -15,6 +16,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven(url = "https://androidx.dev/storage/compose-compiler/repository/")
+        mavenLocal()
     }
 }
 
