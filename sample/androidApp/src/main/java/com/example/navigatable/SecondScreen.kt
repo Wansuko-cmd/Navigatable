@@ -34,9 +34,9 @@ fun SecondScreen(
                             contentDescription = null,
                         )
                     }
-                }
+                },
             )
-        }
+        },
     ) { innerPadding ->
         Column(
             modifier = Modifier

@@ -13,7 +13,6 @@ class KtlintPlugin : Plugin<Project> {
         with(target) {
             val ktlint by configurations.creating
             dependencies {
-
                 // Version Catalogに登録不可
                 ktlint("com.pinterest:ktlint:0.49.1") {
                     attributes {

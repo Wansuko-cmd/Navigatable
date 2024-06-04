@@ -8,4 +8,4 @@ internal fun KSAnnotation.isDynamic() = checkIsAnnotation<Dynamic>()
 
 private inline fun <reified T> KSAnnotation.checkIsAnnotation() =
     annotationType.resolve().declaration.packageName.asString() == T::class.java.packageName &&
-            shortName.asString() == T::class.java.simpleName
+        shortName.asString() == T::class.java.simpleName

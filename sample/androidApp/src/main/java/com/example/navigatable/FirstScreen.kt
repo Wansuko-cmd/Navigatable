@@ -22,7 +22,7 @@ import annotation.Navigatable
 @Composable
 fun FirstScreen(onClick: (String) -> Unit) {
     Scaffold(
-        topBar = { TopAppBar(title = { Text(text = "First Screen") }) }
+        topBar = { TopAppBar(title = { Text(text = "First Screen") }) },
     ) { innerPadding ->
         var value by remember { mutableStateOf("") }
         Column(
