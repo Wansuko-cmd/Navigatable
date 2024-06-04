@@ -10,7 +10,7 @@ serialization = "1.6.0"
 # Library
 #########################################
 # KSP
-ksp-symbol-processing = "1.9.23-1.0.20"
+ksp = "1.9.23-1.0.20"
 
 #########################################
 # Sample
@@ -46,7 +46,7 @@ kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serial
 # Library
 #########################################
 # KSP
-ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp-symbol-processing" }
+ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
 
 #########################################
 # Sample
@@ -87,7 +87,7 @@ androidx-compose = [
 #########################################
 # 共通
 #########################################
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-symbol-processing" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 #########################################

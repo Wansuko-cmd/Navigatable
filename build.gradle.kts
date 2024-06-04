@@ -5,3 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
 }
+
+subprojects {
+    apply(plugin = Plugins.ktlint)
+}
