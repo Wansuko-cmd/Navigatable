@@ -1,5 +1,0 @@
-com.wsr.navigatable.annotation.test.annotation-androidTest-0 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\generated\res\resValues\androidTest\debug
-com.wsr.navigatable.annotation.test.annotation-mergeDebugAndroidTestResources-1 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.wsr.navigatable.annotation.test.annotation-mergeDebugAndroidTestResources-2 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.wsr.navigatable.annotation.test.annotation-debugAndroidTest-3 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
-com.wsr.navigatable.annotation.test.annotation-debug-4 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\intermediates\packaged_res\debug\packageDebugResources
