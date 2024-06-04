@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Navigatable"
 
-include(":sample")
 include(":annotation")
 include(":processor")
+
+include(":sample:androidApp")
