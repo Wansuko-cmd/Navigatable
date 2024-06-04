@@ -49,8 +49,8 @@ android {
 }
 
 dependencies {
-    ksp(project(":lib"))
-    implementation(project(":lib"))
+    ksp(project(":processor"))
+    implementation(project(":annotation"))
 
     implementation(libs.bundles.androidx)
 

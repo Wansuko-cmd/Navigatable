@@ -23,4 +23,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Navigatable"
 include(":app")
-include(":lib")
+include(":annotation")
+include(":processor")

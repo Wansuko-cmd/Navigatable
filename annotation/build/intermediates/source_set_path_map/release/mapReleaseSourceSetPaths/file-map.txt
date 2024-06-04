@@ -1,0 +1,9 @@
+com.wsr.navigatable.annotation-pngs-0 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\generated\res\pngs\release
+com.wsr.navigatable.annotation-resValues-1 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\generated\res\resValues\release
+com.wsr.navigatable.annotation-mergeReleaseResources-2 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.wsr.navigatable.annotation-mergeReleaseResources-3 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.wsr.navigatable.annotation-release-4 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\build\intermediates\merged_res\release\mergeReleaseResources
+com.wsr.navigatable.annotation-androidMain-5 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\src\androidMain\res
+com.wsr.navigatable.annotation-androidRelease-6 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\src\androidRelease\res
+com.wsr.navigatable.annotation-main-7 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\src\main\res
+com.wsr.navigatable.annotation-release-8 C:\Users\wansu\AndroidStudioProjects\Navigatable\annotation\src\release\res

@@ -1,0 +1,1 @@
+com.wsr.navigatable.annotation.test

@@ -99,5 +99,6 @@ jetbrains-kotlin-multiplatform= { id = "org.jetbrains.kotlin.multiplatform", ver
 # Android
 #########################################
 android-application = { id = "com.android.application", version.ref = "gradle-android" }
+android-library = { id = "com.android.library", version.ref = "gradle-android" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
