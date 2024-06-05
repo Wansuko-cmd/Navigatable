@@ -7,6 +7,12 @@ plugins {
     id("maven-publish")
 }
 
+buildscript {
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.4.1")
+    }
+}
+
 subprojects {
     apply(plugin = "maven-publish")
 }
