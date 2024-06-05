@@ -1,0 +1,5 @@
+jdk:
+  - openjdk18
+install:
+  - ./gradlew annotation:publishToMavenLocal
+  - ./gradlew processor:publishToMavenLocal

@@ -12,7 +12,7 @@ kotlin {
         publishLibraryVariants("release")
         compilations.all {
             kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_17.toString()
+                jvmTarget = JavaVersion.VERSION_1_8.toString()
             }
         }
     }

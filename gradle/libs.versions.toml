@@ -4,7 +4,7 @@
 #########################################
 # Library Info
 navigatable-group-id = "io.github.bugdog24"
-navigatable-version = "0.0.1-alpha11"
+navigatable-version = "0.0.1-alpha12"
 
 # Kotlin
 kotlin = "1.9.23"
