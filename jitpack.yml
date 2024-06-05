@@ -1,5 +1,6 @@
 jdk:
   - openjdk18
 install:
+  - chmod 777 ./gradlew
   - ./gradlew annotation:publishToMavenLocal
   - ./gradlew processor:publishToMavenLocal
