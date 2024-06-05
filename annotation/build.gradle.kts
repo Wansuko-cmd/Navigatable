@@ -1,6 +1,6 @@
 plugins {
+    id("com.android.library")
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.serialization)
 }
 
@@ -12,7 +12,7 @@ kotlin {
         publishLibraryVariants("release")
         compilations.all {
             kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_11.toString()
+                jvmTarget = JavaVersion.VERSION_17.toString()
             }
         }
     }
