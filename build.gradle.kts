@@ -4,10 +4,27 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
+    id("maven-publish")
 }
 
 subprojects {
     apply(plugin = "maven-publish")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("processor") {
+            groupId = libs.versions.navigatable.group.id.get()
+            artifactId = "navigatable-processor"
+            version = libs.versions.navigatable.version.get()
+        }
+
+        create<MavenPublication>("annotation") {
+            groupId = libs.versions.navigatable.group.id.get()
+            artifactId = "navigatable-annotation"
+            version = libs.versions.navigatable.version.get()
+        }
+    }
 }
 
 val ktlint by configurations.creating

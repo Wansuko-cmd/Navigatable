@@ -39,14 +39,3 @@ android {
 }
 
 task("testClasses")
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = libs.versions.navigatable.group.id.get()
-            artifactId = "navigatable-annotation"
-            version = libs.versions.navigatable.version.get()
-            from(components["kotlin"])
-        }
-    }
-}
