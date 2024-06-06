@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
     alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     id("maven-publish")
@@ -8,12 +9,13 @@ plugins {
 
 buildscript {
     dependencies {
-        classpath("com.android.tools.build:gradle:8.4.1")
+        classpath(libs.gradle.android)
     }
 }
 
 subprojects {
     apply(plugin = "maven-publish")
+    apply(plugin = Plugins.ktlint)
 }
 
 publishing {
@@ -30,32 +32,4 @@ publishing {
             version = libs.versions.navigatable.version.get()
         }
     }
-}
-
-val ktlint by configurations.creating
-dependencies {
-
-    // Version Catalogに登録不可
-    ktlint("com.pinterest:ktlint:0.49.1") {
-        attributes {
-            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
-        }
-    }
-}
-
-tasks.register<JavaExec>("ktlintCheck") {
-    group = "ktlint"
-    description = "Check Kotlin code style."
-    classpath = ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    args = listOf("src/**/*.kt", "**.kts", "!**/build/**")
-}
-
-tasks.register<JavaExec>("ktlintFormat") {
-    group = "ktlint"
-    description = "Fix Kotlin code style deviations."
-    classpath = ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    jvmArgs = listOf("--add-opens=java.base/java.lang=ALL-UNNAMED")
-    args = listOf("-F", "src/**/*.kt", "**.kts", "!**/build/**")
 }

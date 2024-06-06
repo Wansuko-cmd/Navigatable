@@ -10,6 +10,9 @@ navigatable-version = "0.0.1-alpha14"
 kotlin = "1.9.23"
 serialization = "1.6.0"
 
+# Gradle
+gradle-android = "8.4.1"
+
 #########################################
 # Library
 #########################################
@@ -36,9 +39,6 @@ androidx-compose-compiler = "1.5.13"
 androidx-compose-lifecycle = "2.7.0"
 androidx-compose-navigation = "2.7.7"
 
-# Gradle
-gradle-android = "8.4.1"
-
 [libraries]
 #########################################
 # 共通
@@ -55,6 +55,9 @@ navigatable-processor = { group = "io.github.bugdog24", name = "navigatable-proc
 
 # KSP
 ksp-symbol-processing = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "ksp" }
+
+# Gradle
+gradle-android = { group = "com.android.tools.build", name = "gradle", version.ref = "gradle-android" }
 
 #########################################
 # Sample
