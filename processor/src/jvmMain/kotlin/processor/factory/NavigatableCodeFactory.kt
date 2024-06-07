@@ -56,7 +56,7 @@ private fun StringBuilder.generateRouteDefinition(
     routeName: String,
     navigatableName: String,
     shouldBeInternal: Boolean,
-    dynamics: List<NavigatableParameter>,
+    dynamics: List<DynamicParameter>,
 ) {
     val prefix = if (shouldBeInternal) "internal" else ""
     val path = dynamics.joinToString(separator = "/") { "{${it.name}}" }
@@ -67,7 +67,7 @@ private fun StringBuilder.generateRouteDefinition(
         .also { appendLine(it) }
 }
 
-private fun StringBuilder.generateNavType(dynamic: NavigatableParameter) {
+private fun StringBuilder.generateNavType(dynamic: DynamicParameter) {
     val name = dynamic.name
     val type = dynamic.type
     val isNullable = dynamic.isNullable
@@ -98,7 +98,7 @@ private object ${name}NavType : NavType<$type>(isNullableAllowed = $isNullable) 
 private fun StringBuilder.generateNavigateToNavigatableFunction(
     navigatableName: String,
     shouldBeInternal: Boolean,
-    dynamics: List<NavigatableParameter>,
+    dynamics: List<DynamicParameter>,
 ) {
     val prefix = if (shouldBeInternal) "internal" else ""
     val parameters = dynamics.joinToString(",\n") { "${it.name}: ${it.type}" }
@@ -121,7 +121,7 @@ private fun StringBuilder.generateNavGraphRegisterFunction(
     navigatableName: String,
     routeName: String,
     shouldBeInternal: Boolean,
-    dynamics: List<NavigatableParameter>,
+    dynamics: List<DynamicParameter>,
     parameters: List<NavigatableParameter>,
 ) {
     val prefix = if (shouldBeInternal) "internal" else ""
@@ -140,8 +140,9 @@ private fun StringBuilder.generateNavGraphRegisterFunction(
         "val $name = ${name}NavType.get(backStackEntry.arguments!!, \"$name\")"
     }
 
-    val passOverArguments = (dynamics + parameters).joinToString(",\n") {
-        "${it.name} = ${it.name}"
+    val passOverArguments =
+        (dynamics.map { it.name } + parameters.map { it.name }).joinToString(",\n") {
+            "$it = $it"
     }
     """
 $prefix fun NavGraphBuilder.${navigatableName.replaceFirstChar { it.lowercase() }}($args) {

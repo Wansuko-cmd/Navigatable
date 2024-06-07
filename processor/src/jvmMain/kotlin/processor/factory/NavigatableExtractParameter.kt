@@ -31,7 +31,7 @@ fun extractFromNavigatable(navigatable: KSFunctionDeclaration): ExtractFromNavig
         navigatableName = navigatableName,
         routeName = routeName,
         shouldBeInternal = shouldBeInternal,
-        dynamics = dynamics.map { NavigatableParameter(it) },
+        dynamics = dynamics.map { DynamicParameter(it) },
         parameters = parameters.map { NavigatableParameter(it) },
     )
 }
@@ -40,11 +40,17 @@ data class ExtractFromNavigatableResult(
     val navigatableName: String,
     val routeName: String,
     val shouldBeInternal: Boolean,
+    val dynamics: List<DynamicParameter>,
     val parameters: List<NavigatableParameter>,
-    val dynamics: List<NavigatableParameter>,
 )
 
 data class NavigatableParameter(private val value: KSValueParameter) {
+    val name = value.name!!.asString()
+    val type = value.type.asString()
+    val isNullable = type.last() == '?'
+}
+
+data class DynamicParameter(private val value: KSValueParameter) {
     val name = value.name!!.asString()
     val type = value.type.asString()
     val isNullable = type.last() == '?'
